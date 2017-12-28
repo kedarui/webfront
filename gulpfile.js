@@ -25,6 +25,5 @@ gulp.task('watch',function(){
 	gulp.watch(['xml/*.xml','json/*.json','!json/secret*.json'],['data']);
 });
 
-
 //默认任务
 gulp.task('default',['copy-index']);
