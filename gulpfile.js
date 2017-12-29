@@ -1,7 +1,10 @@
 var gulp = require('gulp'); 
+var connect =require('gulp-connect');
 
 gulp.task('copy-index',function(){
-	return gulp.src('index.html').pipe(gulp.dest('dist'));
+	return gulp.src('index.html')
+	.pipe(gulp.dest('dist'))
+	.pipe(connect.reload());
 });
 
 //一级目录底下固定格式文件：'images/*.{png,jpg}'
@@ -26,4 +29,22 @@ gulp.task('watch',function(){
 });
 
 //默认任务
-gulp.task('default',['copy-index']);
+//gulp.task('default',['copy-index']);
+
+
+//插件官网：gulpjs.com/plugins
+
+
+//创建本地服务器
+//npm install gulp-connect --save-dev
+gulp.task('server',function(){
+	connect.server({
+		root:'dist',
+		livereload:true    //启用实时刷新
+	});
+});
+
+//实时预览
+gulp.task('default',['server','watch']);
+
+
